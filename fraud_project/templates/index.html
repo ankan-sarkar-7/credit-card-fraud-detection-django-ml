@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .container {
+            width: 420px;
+            margin: 50px auto;
+            background: #ffffff;
+            color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #243b55;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #243b55;
+            outline: none;
+            box-shadow: 0 0 5px rgba(36,59,85,0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #243b55;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #1a2a40;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row input {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>💳 Fraud Detection System</h2>
+
+        <form action="/predict/" method="post">
+            {% csrf_token %}
+
+            <input type="text" name="merchant" placeholder="Merchant Name" required>
+            <input type="text" name="category" placeholder="Category" required>
+
+            <input type="number" step="0.01" name="amt" placeholder="Transaction Amount" required>
+
+            <div class="row">
+                <input type="number" step="0.000001" name="lat" placeholder="Latitude"
+                       min="-90" max="90" required>
+                <input type="number" step="0.000001" name="long" placeholder="Longitude"
+                       min="-180" max="180" required>
+            </div>
+
+            <div class="row">
+                <input type="number" step="0.000001" name="merch_lat" placeholder="Merchant Lat"
+                       min="-90" max="90" required>
+                <input type="number" step="0.000001" name="merch_long" placeholder="Merchant Long"
+                       min="-180" max="180" required>
+            </div>
+
+            <div class="row">
+                <input type="number" name="hour" placeholder="Hour (0-23)" min="0" max="23" required>
+                <input type="number" name="day" placeholder="Day (1-31)" min="1" max="31" required>
+                <input type="number" name="month" placeholder="Month (1-12)" min="1" max="12" required>
+            </div>
+
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <input type="text" name="cc_num" placeholder="Credit Card Number" required>
+
+            <button type="submit">🔍 Check Fraud</button>
+        </form>
+    </div>
+</body>
+</html>

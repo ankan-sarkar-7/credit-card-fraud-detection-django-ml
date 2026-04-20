@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+            text-align: center;
+        }
+
+        .box {
+            margin-top: 100px;
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+        }
+
+        .fraud {
+            color: red;
+            font-weight: bold;
+        }
+
+        .safe {
+            color: green;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            background: #243b55;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background: #1a2a40;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Prediction Result</h2>
+
+        {% if result == "Fraudulent Transaction" %}
+            <p class="fraud">🚨 {{ result }}</p>
+        {% else %}
+            <p class="safe">✅ {{ result }}</p>
+        {% endif %}
+
+        <a href="/">Try Again</a>
+    </div>
+</body>
+</html>
